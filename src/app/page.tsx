@@ -1,3 +1,9 @@
+import { Feedback } from "@/components/Feedback"
+
 export default function Home() {
-  return <main></main>
+  return (
+    <main className="relative">
+      <Feedback />
+    </main>
+  )
 }
