@@ -3,11 +3,13 @@ import { FormEvent, useState } from "react";
 import { SnipButton } from "../SnipButton";
 
 export const FeedbackForm = ({ text }: { text: string }) => {
-  const [comment, setComment] = useState("");
   const ctx = useFeedback();
+  const [comment, setComment] = useState("");
+  const [screenshot, setScreenshot] = useState<string | null>(null);
 
   const handlerSubmit = (e: FormEvent) => {
     e.preventDefault();
+    //alert(JSON.stringify({ comment, screenshot }));
     ctx.handleCallback();
   };
 
@@ -19,7 +21,7 @@ export const FeedbackForm = ({ text }: { text: string }) => {
         onChange={e => setComment(e.target.value)}
       ></textarea>
       <div className="flex items-center justify-items-center py-2">
-        <SnipButton />
+        <SnipButton screenshot={screenshot} onScreenshot={setScreenshot} />
         <button
           className="rounded-sm bg-blue-600 p-2 hover:bg-blue-500 disabled:opacity-40 disabled:hover:bg-blue-600"
           disabled={comment?.length === 0}
